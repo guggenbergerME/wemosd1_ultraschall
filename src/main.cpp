@@ -5,14 +5,28 @@ const char* ssid = "GLT1";
 const char* password = "glt123456";
   
 WiFiServer server(80);
+
+/* Kabelbelegung
+vcc     orange/weiss
+trig    grün/weiss D6
+echo    blau/weiss D7
+gnd     braun/weiss
+*/
   
 // PINverwaltung
 int trigger = D6;
 int echo = D7;
 
 // Variablen
-long dauer = 0;
-long distanz = 0;
+int dauer = 0;
+int distanz = 0;
+int liter_zisterne = 0;
+int liter_luft =0;
+int liter_fuellstand =0;
+
+// Variablen Zisterne
+int zisterne_r = 100;
+int zisterne_h = 220;
 
 // ###################################################### SETUP
 void setup() {
@@ -52,12 +66,10 @@ digitalWrite(trigger, LOW);
 dauer = pulseIn(echo, HIGH);
 //Calculate the distance (in cm) based on the speed of sound.
 distanz = dauer/58.2;
-//Serial.println(distanz);
+Serial.print("Distanz Schall: "); Serial.println(distanz);
 
 //Delay 50ms before next reading.
 delay(50);
-
-
 
   String cmd;
   cmd += "";
@@ -68,57 +80,58 @@ delay(50);
   client.println("<html xmlns='http://www.w3.org/1999/xhtml'>");
   client.println("<head><meta charset='UTF-8'>");
   client.println("<title>Wasserstand Regenwasserzisterne</title>");
+  client.println("<meta http-equiv='refresh' content='5'>");
   client.println("</head><body>");
   client.println("<H2>Wasserstand Regenwasserzisterne</H2>");
   client.println("<h3>");
+  
+    // Volumen Zisterne
+    liter_zisterne = ((zisterne_r * zisterne_r) * zisterne_h * 3.1415926535)/1000;
+    Serial.print("Liter Zisterne: "); Serial.println(liter_zisterne);
+    liter_luft = ((zisterne_r * zisterne_r) * distanz * 3.1415926535)/1000;
+    Serial.print("Liter Luft: "); Serial.println(liter_luft);
+    liter_fuellstand = liter_zisterne - liter_luft;
+    Serial.print("Liter Füllstand: "); Serial.println(liter_fuellstand);
+    //client.print(distanz);
 
-  if (entfernung >= 200 || entfernung <= 0)
-  {
-    client.println("Kein Messwerte vorhanden!");
-  }
-  else
-  {
-    entfernung = 192 - entfernung;
-    entfernung = entfernung * 84.7457;
-    client.print(entfernung);
-    client.println(" Liter");
-  }
 // ################################################### 1
-if (entfernung >= 0 && entfernung <= 1833)
+if (liter_fuellstand >= 0 && liter_fuellstand <= 200)
 {
-  client.print("<p> Füllstand  &#x1F534;</p>");
+  client.print("<p> Füllstand unter 200 Liter &#x1F534;</p>");
 }
 
 // ################################################### 2
-if (entfernung >= 1833 && entfernung <= 3666)
+if (liter_fuellstand >= 201 && liter_fuellstand <= 2000)
 {
-  client.print("<p> Füllstand 2</p>");
+  client.print("<p> Füllstand unter 2000 Liter</p>");
 }
 
-// ################################################### 3
-if (entfernung >= 3666 && entfernung <= 5500)
+// ################################################### 2
+if (liter_fuellstand >= 2001 && liter_fuellstand <= 4000)
 {
-  client.print("<p> Füllstand 3</p>");
-}
-// ################################################### 4  
-if (entfernung >= 5500 && entfernung <= 7332)
-{
-  client.print("<p> Füllstand 4</p>");
-}
-  
-// ################################################### 5
-if (entfernung >= 7332 && entfernung <= 9165)
-{
-  client.print("<p> Füllstand 5</p>");
+  client.print("<p> Füllstand unter 4000 Liter</p>");
 }
 
-// ################################################### 6
-if (entfernung >= 9165 && entfernung <= 16000)
+// ################################################### 2
+if (liter_fuellstand >= 4001 && liter_fuellstand <= 7500)
 {
-    client.print("<p> Füllstand 6</p>");
+  client.print("<p> Füllstand unter 7500 Liter</p>");
+}
+
+// ################################################### 2
+if (liter_fuellstand >= 7501 && liter_fuellstand <= 8500)
+{
+  client.print("<p> Füllstand unter 8500 Liter</p>");
+}
+
+// ################################################### 2
+if (liter_fuellstand >= 8501 && liter_fuellstand <= 9600)
+{
+  client.print("<p> Füllstand VOLL</p>");
 }
 
 client.println("</h3> ");
-  client.print("</body></html>");
-  delay(500);
+client.println("<p>Seite aktualisiert sich alle 5 Sekunden!</p>");
+client.print("</body></html>");
+delay(600);
 }
