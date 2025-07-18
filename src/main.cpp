@@ -66,10 +66,10 @@ digitalWrite(trigger, LOW);
 dauer = pulseIn(echo, HIGH);
 //Calculate the distance (in cm) based on the speed of sound.
 distanz = dauer/58.2;
-Serial.print("Distanz Schall: "); Serial.println(distanz);
+Serial.print("Distanz Schall------------------------ > in cm : "); Serial.println(distanz);
 
 //Delay 50ms before next reading.
-delay(50);
+delay(300);
 
   String cmd;
   cmd += "";
@@ -93,9 +93,10 @@ delay(50);
     liter_fuellstand = liter_zisterne - liter_luft;
     Serial.print("Liter Füllstand: "); Serial.println(liter_fuellstand);
     //client.print(distanz);
-
+    Serial.println("");
+    Serial.println("");
 // ################################################### 1
-if (liter_fuellstand >= 0 && liter_fuellstand <= 200)
+if (liter_fuellstand <= 200)
 {
   client.print("<p> Füllstand unter 200 Liter &#x1F534;</p>");
 }
