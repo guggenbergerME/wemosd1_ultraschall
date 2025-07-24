@@ -9,6 +9,7 @@
             "name": "PlatformIO",
             "includePath": [
                 "/home/pc813/Arduino/wemosd1_ultraschall/src",
+                "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WiFi/src",
                 "/home/pc813/Arduino/wemosd1_ultraschall/.pio/libdeps/d1_mini_lite/PCF8574 library",
                 "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/Wire",
                 "/home/pc813/Arduino/wemosd1_ultraschall/.pio/libdeps/d1_mini_lite/PubSubClient/src",
@@ -30,7 +31,6 @@
                 "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266SSDP",
                 "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266SdFat/src",
                 "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WebServer/src",
-                "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WiFi/src",
                 "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WiFiMesh/src",
                 "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266httpUpdate/src",
                 "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266mDNS/src",
@@ -61,6 +61,7 @@
                 "limitSymbolsToIncludedHeaders": true,
                 "path": [
                     "/home/pc813/Arduino/wemosd1_ultraschall/src",
+                    "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WiFi/src",
                     "/home/pc813/Arduino/wemosd1_ultraschall/.pio/libdeps/d1_mini_lite/PCF8574 library",
                     "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/Wire",
                     "/home/pc813/Arduino/wemosd1_ultraschall/.pio/libdeps/d1_mini_lite/PubSubClient/src",
@@ -82,7 +83,6 @@
                     "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266SSDP",
                     "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266SdFat/src",
                     "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WebServer/src",
-                    "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WiFi/src",
                     "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266WiFiMesh/src",
                     "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266httpUpdate/src",
                     "/home/pc813/.platformio/packages/framework-arduinoespressif8266/libraries/ESP8266mDNS/src",

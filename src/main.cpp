@@ -1,4 +1,8 @@
-// Quelle https://arduino-projekte.info/blogs/projekte/zisterne-fuellstandsanzeige?srsltid=AfmBOooX92uzrs9_x-6LpC01pBRju-faEiXiYulyaeVUsV0zWtvoDlNZ
+/* 
+Quelle https://arduino-projekte.info/blogs/projekte/zisterne-fuellstandsanzeige?srsltid=AfmBOooX92uzrs9_x-6LpC01pBRju-faEiXiYulyaeVUsV0zWtvoDlNZ
+Ultraschall Sensor: HC-SR04
+*/
+
 #include <ESP8266WiFi.h>
   
 const char* ssid = "GLT1";
@@ -7,10 +11,10 @@ const char* password = "glt123456";
 WiFiServer server(80);
 
 /* Kabelbelegung
-vcc     orange/weiss
-trig    grün/weiss D6
-echo    blau/weiss D7
-gnd     braun/weiss
+vcc     rot
+trig    gelb D6
+echo    weiss D7
+gnd     schwarz
 */
   
 // PINverwaltung
@@ -79,10 +83,10 @@ delay(300);
   client.println("<!DOCTYPE html>");
   client.println("<html xmlns='http://www.w3.org/1999/xhtml'>");
   client.println("<head><meta charset='UTF-8'>");
-  client.println("<title>Wasserstand Regenwasserzisterne</title>");
+  client.println("<title>Zisterne</title>");
   client.println("<meta http-equiv='refresh' content='5'>");
   client.println("</head><body>");
-  client.println("<H2>Wasserstand Regenwasserzisterne</H2>");
+  client.println("<H2>Wasserstand Zisterne</H2>");
   client.println("<h3>");
   
     // Volumen Zisterne
@@ -95,6 +99,11 @@ delay(300);
     //client.print(distanz);
     Serial.println("");
     Serial.println("");
+    client.print("<p> Füllstand ");
+    client.print(liter_fuellstand);
+    client.print(" Liter </p>");
+
+    /*
 // ################################################### 1
 if (liter_fuellstand <= 200)
 {
@@ -130,9 +139,13 @@ if (liter_fuellstand >= 8501 && liter_fuellstand <= 9600)
 {
   client.print("<p> Füllstand VOLL</p>");
 }
-
+*/
 client.println("</h3> ");
 client.println("<p>Seite aktualisiert sich alle 5 Sekunden!</p>");
+client.println("<p>IP: ");client.println(WiFi.localIP());client.println("</p>");
+client.println("<p>Kennung Sensor - MAC 44:17:93:0d:73:de - Hostname ESP-0D73DE</p>");
+client.println("<p>coder 017620288404 - code@guggbyte.com</p>");
+
 client.print("</body></html>");
 delay(600);
 }
