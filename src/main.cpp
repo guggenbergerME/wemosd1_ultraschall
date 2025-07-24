@@ -11,10 +11,11 @@ const char* password = "glt123456";
 WiFiServer server(80);
 
 /* Kabelbelegung
-vcc     rot
-trig    gelb D6
-echo    weiss D7
-gnd     schwarz
+Art     Kabel       Steckerleiste
+vcc     rot         3
+trig    gelb D6     1
+echo    weiss D7    2
+gnd     schwarz     4
 */
   
 // PINverwaltung
